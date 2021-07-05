@@ -1,0 +1,8 @@
+[book]
+authors = ["Ekil"]
+language = "cn"
+multilingual = false
+src = "src"
+title = "函数式编程的基本指南"
+descrioption="Mostly Adequate Guide to Functional Programming 中文版"
+
