@@ -3,10 +3,14 @@
   "version": "1.0.0",
   "description": "The Mostly Adequate Guide to Functional Programming",
   "dependencies": {
+    "gitbook-plugin-exercises": "MostlyAdequate/plugin-exercises",
     "gitbook-plugin-include-codeblock": "^3.2.2",
-    "gitbook-plugin-exercises": "MostlyAdequate/plugin-exercises"
+    "ramda": "^0.27.1",
+    "ramda-adjunct": "^2.33.0"
   },
   "devDependencies": {
+    "@google-cloud/translate": "^6.2.4",
+    "dotenv": "^10.0.0",
     "gitbook-cli": "^2.3.2"
   },
   "scripts": {
