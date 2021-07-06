@@ -8,6 +8,8 @@ const {
   andThen,
   map,
   flatten,
+  aperture,
+  transpose,
 } = require('ramda')
 const { reduceIndexed, mapIndexed } = require('ramda-adjunct')
 const fs = require('fs')
@@ -16,10 +18,36 @@ const { Translate } = require('@google-cloud/translate').v2
 const filename = process.argv[2]
 const placeholder = ''
 
+const to2D = (num, length) => {
+  let temp = []
+  let n = num
+  let a = 1
+  return reduce((acc, elem) => {
+    a++
+    if (n > 1) {
+      temp.push(elem)
+      n--
+    } else {
+      temp.push(elem)
+      n = num
+      acc.push(temp)
+      temp = []
+    }
+    if (length - a === 0 && length % num !== 0) {
+      acc.push(temp)
+    }
+    return acc
+  }, [])
+}
+
 async function translateText(text) {
+  const length = text.length
   const translate = new Translate()
-  const [result] = await translate.translate(text, { to: 'zh' })
-  return result
+  const res = map(async (v) => {
+    const [res] = await translate.translate(v, { to: 'zh' })
+    return res
+  }, to2D(100, length)(text))
+  return flatten(await Promise.all(res))
 }
 
 // string[] -> string[]
@@ -65,11 +93,8 @@ compose(
   // andThen(log),
   andThen(join('\n')),
   andThen(recoverCodeBlock(codes)),
-  // andThen(split(/%%%%%/g)),
   // andThen(log),
   translateText,
-  // log,
-  // join('%%%%%'),
   extractCodeBlock(false, codes),
   split('\n'),
   getFile,
