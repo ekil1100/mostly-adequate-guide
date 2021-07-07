@@ -93,7 +93,7 @@ compose(
   // andThen(log),
   andThen(join('\n')),
   andThen(recoverCodeBlock(codes)),
-  // andThen(log),
+  andThen(log),
   translateText,
   extractCodeBlock(false, codes),
   split('\n'),
