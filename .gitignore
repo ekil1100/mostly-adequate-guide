@@ -12,3 +12,4 @@ exercises/index.js
 package-lock.json
 book
 .env
+key.json

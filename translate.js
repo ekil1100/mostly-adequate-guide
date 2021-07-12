@@ -81,8 +81,6 @@ const recoverCodeBlock = (codeBlockMap) =>
 // string -> string
 const getFile = (filename) => fs.readFileSync(filename, 'utf8')
 
-const getFile = fs.readFileSync('utf8')
-
 // string -> void
 const putFile = (res) => fs.writeFileSync(`./src/${filename}`, res, 'utf8')
 

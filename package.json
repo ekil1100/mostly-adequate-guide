@@ -5,6 +5,7 @@
   "dependencies": {
     "gitbook-plugin-exercises": "MostlyAdequate/plugin-exercises",
     "gitbook-plugin-include-codeblock": "^3.2.2",
+    "honkit": "^3.6.20",
     "ramda": "^0.27.1",
     "ramda-adjunct": "^2.33.0"
   },
